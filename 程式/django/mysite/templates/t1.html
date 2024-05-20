@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>新增文字區塊和圖片選擇器</title>
+    <style>
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px; /* 為了讓每個文字區塊有一定的間距 */
+        }
+        .container {
+            margin-bottom: 10px;
+        }
+        .image-selector {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="textareaContainer">
+        <!-- 文字區塊和圖片選擇器將被新增到這個 div 中 -->
+    </div>
+    <button onclick="addTextarea()">新增文字區塊和圖片選擇器</button>
+    <button onclick="removeTextarea()">減少文字區塊和圖片選擇器</button>
+
+    <script>
+        function addTextarea() {
+            // 建立一個包含 textarea 和圖片選擇器的容器
+            var container = document.createElement("div");
+            container.classList.add("container");
+
+            // 建立一個新的 textarea 元素
+            var newTextarea = document.createElement("textarea");
+            newTextarea.name = "message";
+            newTextarea.classList.add("form-control");
+            newTextarea.id = "message";
+            newTextarea.cols = "30";
+            newTextarea.rows = "6";
+            newTextarea.required = true;
+            newTextarea.placeholder = "Your Story";
+
+            // 建立一個新的圖片選擇器元素
+            var imageSelector = document.createElement("input");
+            imageSelector.type = "file";
+            imageSelector.classList.add("image-selector");
+            imageSelector.accept = "image/*";
+
+            // 將 textarea 和圖片選擇器新增到容器中
+            container.appendChild(newTextarea);
+            container.appendChild(imageSelector);
+
+            // 將容器新增到 div 中
+            document.getElementById("textareaContainer").appendChild(container);
+        }
+
+        function removeTextarea() {
+            var container = document.getElementById("textareaContainer");
+            // 檢查是否有容器可以移除
+            if (container.getElementsByClassName("container").length > 0) {
+                // 移除最後一個容器
+                container.removeChild(container.lastChild);
+            }
+        }
+    </script>
+</body>
+</html>
