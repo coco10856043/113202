@@ -1,0 +1,51 @@
+
+
+#################django基本指令#########
+
+先在文件那邊先建立一個資料夾
+
+再到cmd打
+
+cd C:\Users\您的用戶名\Documents
+
+cd 你建立的檔案名稱
+
+
+創建虛擬環境(建議)
+
+python -m venv env
+
+
+啟用虛擬環境
+
+env\Scripts\activate
+
+安裝 Django
+
+pip install django
+
+創建項目
+
+django-admin startproject mysite(自己建的project名稱)
+
+
+進入項目目錄
+
+cd mysite
+
+創建應用
+
+python manage.py startapp myapp(自己建立的app名稱:之後要在seetting那邊修改)
+
+啟動開發服務器(runserver)
+
+python manage.py runserver
+
+
+#####################################################
+如有檔案更新(如加圖片、資料庫更新)runserver前要打
+
+python manage.py makemigrations
+
+python manage.py migrate
+
