@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js demo-4">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>BookBlock: A Content Flip Plugin - Demo 4</title>
+		<meta name="description" content="Bookblock: A Content Flip Plugin - Demo 4" />
+		<meta name="keywords" content="javascript, jquery, plugin, css3, flip, page, 3d, booklet, book, perspective" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico"> 
+		<link rel="stylesheet" type="text/css" href="static/css/default.css" />
+		<link rel="stylesheet" type="text/css" href="static/css/bookblock.css" />
+		<!-- custom demo style -->
+		<link rel="stylesheet" type="text/css" href="static/css/demo2.css" />
+		<script src="static/js/modernizr.custom.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="bb-custom-wrapper">
+				
+				<div id="bb-bookblock" class="bb-bookblock">
+					<div class="bb-item">
+						<div class="bb-custom-firstpage">
+							<img src="static/image/demo1/6.webp" alt="image01"/></a>
+							<h1>愛說謊的小猴子</h1>
+							
+							<!-- <nav class="codrops-demos">
+								<a href="index.html">Demo 1</a>
+								<a href="index2.html">Demo 2</a>
+								<a href="index3.html">Demo 3</a>
+								<a class="current-demo" href="index4.html">Demo 4</a>
+								<a href="index5.html">Demo 5</a> -->
+							<!-- </nav> -->
+							<!-- <nav class="codrops-nav">
+								<a class="codrops-icon codrops-icon-prev" href="http://tympanus.net/codrops/2012/08/29/multiple-area-charts-with-d3-js/"><span>Previous Demo</span></a>
+								<a class="codrops-icon codrops-icon-drop" href="http://tympanus.net/codrops/2012/09/03/bookblock-a-content-flip-plugin/"><span>Back to the Codrops Article</span></a>
+							</nav> -->
+						</div>
+						<div class="bb-custom-side">
+							<img src="static/image/demo1/1.jpg" alt="image01"/></a>
+							<p>Pastry bear claw oat cake danish croissant jujubes danish. Wypas soufflé muffin. Liquorice powder pastry danish. Candy toffee gummi bears chocolate bar lollipop applicake chocolate cake danish brownie.</p>
+						</div>
+					</div>
+					<div class="bb-item">
+						<div class="bb-custom-side">
+							<img src="static/image/demo1/8.webp" alt="image01"/></a>
+							<div class="text-overlay">
+								<p>從前，在一片熱帶雨林中，有一群活潑好動的小猴子。其中有一隻叫做奇奇的小猴子，因為經常撒謊而出了名。奇奇喜歡惡作劇，經常用各種謊言來捉弄其他動物，讓自己看起來更聰明或更勇敢。</p>
+							</div>
+						</div>
+					</div>
+					<div class="bb-item">
+						<div class="bb-custom-side">
+							<img src="static/image/demo1/9.webp" alt="image01"/></a>
+							<div class="text-overlay">
+								<p>一天，奇奇在樹上發現了一個巨大的蜂窩，他決定惡作劇。他高聲告訴所有的動物，樹上的蜂窩裡有最甜美的蜂蜜，但他是唯一知道如何安全取得蜜的。許多動物都被他的話所誘惑，圍在樹下，希望奇奇能分享一些蜂蜜。</p>
+							</div>
+						</div>
+					</div>
+					<div class="bb-item">
+						<div class="bb-custom-side">
+							<img src="static/image/demo1/10.webp" alt="image01"/></a>
+							<div class="text-overlay">
+								<p>奇奇高興地看到這麼多動物聚集在一起，他開始爬向蜂窩。然而，當他一觸碰到蜂窩，成群的憤怒蜜蜂就嗡嗡地飛了出來，向所有動物發動攻擊。奇奇和其他動物們逃跑散開，所有動物都受到了驚嚇，而且有些還被蜂蜜蜇傷。</p>
+							</div>
+						</div>
+					</div>
+					<div class="bb-item">
+						<div class="bb-custom-side">
+							<img src="static/image/demo1/7.webp" alt="image01"/></a>
+							<div class="text-overlay">
+								<p>之後，森林中的動物們開始避開奇奇，不再相信他的任何話。奇奇感到非常孤單和悲傷，因為他意識到自己撒謊和惡作劇所帶來的後果。他開始反省自己的行為，決定從此誠實待人，爭取重新贏得大家的信任。</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<nav>
+					<a id="bb-nav-first" href="#" class="bb-custom-icon bb-custom-icon-first">First page</a>
+					<a id="bb-nav-prev" href="#" class="bb-custom-icon bb-custom-icon-arrow-left">Previous</a>
+					<a id="bb-nav-next" href="#" class="bb-custom-icon bb-custom-icon-arrow-right">Next</a>
+					<a id="bb-nav-last" href="#" class="bb-custom-icon bb-custom-icon-last">Last page</a>
+				</nav>
+
+			</div>
+
+		</div><!-- /container -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="static/js/jquerypp.custom.js"></script>
+		<script src="static/js/jquery.bookblock.js"></script>
+		<script>
+			var Page = (function() {
+				
+				var config = {
+						$bookBlock : $( '#bb-bookblock' ),
+						$navNext : $( '#bb-nav-next' ),
+						$navPrev : $( '#bb-nav-prev' ),
+						$navFirst : $( '#bb-nav-first' ),
+						$navLast : $( '#bb-nav-last' )
+					},
+					init = function() {
+						config.$bookBlock.bookblock( {
+							speed : 1000,
+							shadowSides : 0.8,
+							shadowFlip : 0.4
+						} );
+						initEvents();
+					},
+					initEvents = function() {
+						
+						var $slides = config.$bookBlock.children();
+
+						// add navigation events
+						config.$navNext.on( 'click touchstart', function() {
+							config.$bookBlock.bookblock( 'next' );
+							return false;
+						} );
+
+						config.$navPrev.on( 'click touchstart', function() {
+							config.$bookBlock.bookblock( 'prev' );
+							return false;
+						} );
+
+						config.$navFirst.on( 'click touchstart', function() {
+							config.$bookBlock.bookblock( 'first' );
+							return false;
+						} );
+
+						config.$navLast.on( 'click touchstart', function() {
+							config.$bookBlock.bookblock( 'last' );
+							return false;
+						} );
+						
+						// add swipe events
+						$slides.on( {
+							'swipeleft' : function( event ) {
+								config.$bookBlock.bookblock( 'next' );
+								return false;
+							},
+							'swiperight' : function( event ) {
+								config.$bookBlock.bookblock( 'prev' );
+								return false;
+							}
+						} );
+
+						// add keyboard events
+						$( document ).keydown( function(e) {
+							var keyCode = e.keyCode || e.which,
+								arrow = {
+									left : 37,
+									up : 38,
+									right : 39,
+									down : 40
+								};
+
+							switch (keyCode) {
+								case arrow.left:
+									config.$bookBlock.bookblock( 'prev' );
+									break;
+								case arrow.right:
+									config.$bookBlock.bookblock( 'next' );
+									break;
+							}
+						} );
+					};
+
+					return { init : init };
+
+			})();
+		</script>
+		<script>
+				Page.init();
+		</script>
+	</body>
+</html>
