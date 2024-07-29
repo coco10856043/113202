@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js demo-4">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>BookBlock: A Content Flip Plugin - Demo 4</title>
+        <meta name="description" content="Bookblock: A Content Flip Plugin - Demo 4" />
+        <meta name="keywords" content="javascript, jquery, plugin, css3, flip, page, 3d, booklet, book, perspective" />
+        <meta name="author" content="Codrops" />
+        <link rel="shortcut icon" href="../favicon.ico"> 
+        <link rel="stylesheet" type="text/css" href="/static/css/default.css" />
+        <link rel="stylesheet" type="text/css" href="/static/css/bookblock.css" />
+        <!-- custom demo style -->
+        <link rel="stylesheet" type="text/css" href="/static/css/demo2.css" />
+        <!-- FontAwesome CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <script src="/static/js/modernizr.custom.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="bb-custom-wrapper">
+                <div id="bb-bookblock" class="bb-bookblock">
+                    <div class="bb-item">
+                        <div class="bb-custom-firstpage">
+                            <img src="/static/image/demo1/6.webp" alt="image01"/>
+                            <div class="text-overlay">
+                                <h1>愛說謊的小猴子</h1>
+                            </div>
+                        </div>
+                        <div class="bb-custom-side">
+                            <img src="/static/image/demo1/11.jpg" alt="image01"/>
+                        </div>
+                    </div>
+                    <div class="bb-item">
+                        <div class="bb-custom-side">
+                            <img src="/static/image/demo1/8.webp" alt="image01"/>
+                            <div class="text-overlay">
+                                <p>從前，在一片熱帶雨林中，有一群活潑好動的小猴子。其中有一隻叫做奇奇的小猴子，因為經常撒謊而出了名。奇奇喜歡惡作劇，經常用各種謊言來捉弄其他動物，讓自己看起來更聰明或更勇敢。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bb-item">
+                        <div class="bb-custom-side">
+                            <img src="/static/image/demo1/9.webp" alt="image01"/>
+                            <div class="text-overlay">
+                                <p>一天，奇奇在樹上發現了一個巨大的蜂窩，他決定惡作劇。他高聲告訴所有的動物，樹上的蜂窩裡有最甜美的蜂蜜，但他是唯一知道如何安全取得蜜的。許多動物都被他的話所誘惑，圍在樹下，希望奇奇能分享一些蜂蜜。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bb-item">
+                        <div class="bb-custom-side">
+                            <img src="/static/image/demo1/10.webp" alt="image01"/>
+                            <div class="text-overlay">
+                                <p>奇奇高興地看到這麼多動物聚集在一起，他開始爬向蜂窩。然而，當他一觸碰到蜂窩，成群的憤怒蜜蜂就嗡嗡地飛了出來，向所有動物發動攻擊。奇奇和其他動物們逃跑散開，所有動物都受到了驚嚇，而且有些還被蜜蜂蜇傷。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bb-item">
+                        <div class="bb-custom-side">
+                            <img src="/static/image/demo1/7.webp" alt="image01"/>
+                            <div class="text-overlay">
+                                <p>之後，森林中的動物們開始避開奇奇，不再相信他的任何話。奇奇感到非常孤單和悲傷，因為他意識到自己撒謊和惡作劇所帶來的後果。他開始反省自己的行為，決定從此誠實待人，爭取重新贏得大家的信任。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bb-item">
+                        <div class="bb-custom-side">
+                            <img src="/static/image/demo1/11.webp" alt="image01"/>
+                            <div class="text-overlay">
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <nav>
+                    <a id="bb-nav-first" href="#" class="bb-custom-icon bb-custom-icon-first"><i class="fas fa-angle-double-left"></i></a>
+                    <a id="bb-nav-prev" href="#" class="bb-custom-icon bb-custom-icon-arrow-left"><i class="fas fa-angle-left"></i></a>
+                    <a id="bb-nav-next" href="#" class="bb-custom-icon bb-custom-icon-arrow-right"><i class="fas fa-angle-right"></i></a>
+                    <a id="bb-nav-last" href="#" class="bb-custom-icon bb-custom-icon-last"><i class="fas fa-angle-double-right"></i></a>
+                    <a id="bb-nav-playpause" href="#" class="bb-custom-icon bb-custom-icon-playpause"><i class="fas fa-play"></i></a>
+                    <select id="voiceSelect"></select>
+                </nav>
+            </div>
+        </div><!-- /container -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="/static/js/jquerypp.custom.js"></script>
+        <script src="/static/js/jquery.bookblock.js"></script>
+        <script>
+            var Page = (function() {
+                var config = {
+                    $bookBlock : $('#bb-bookblock'),
+                    $navNext : $('#bb-nav-next'),
+                    $navPrev : $('#bb-nav-prev'),
+                    $navFirst : $('#bb-nav-first'),
+                    $navLast : $('#bb-nav-last'),
+                    $navPlayPause : $('#bb-nav-playpause'),  // 播放/暂停按钮
+                    $voiceSelect: $('#voiceSelect'), // 语音选择下拉菜单
+                    isPlaying: false, // 用于跟踪是否正在播放语音
+                    isPaused: false,  // 用于跟踪是否暂停
+                    utterance: null // 用于存储当前的 SpeechSynthesisUtterance 实例
+                },
+                init = function() {
+                    config.$bookBlock.bookblock({
+                        speed : 1000,
+                        shadowSides : 0.8,
+                        shadowFlip : 0.4
+                    });
+                    speechSynthesis.onvoiceschanged = function() {
+                        initVoices();
+                    };
+                    initVoices();
+                    initEvents();
+                },
+                initVoices = function() {
+                    var voices = speechSynthesis.getVoices();
+                    var selectedVoices = [
+                        { name: 'Microsoft Hanhan - Chinese (Traditional, Taiwan)', lang: 'zh-TW', displayName: '女聲(慢)' },
+                        { name: 'Microsoft Yaoyao - Chinese (Simplified, PRC)', lang: 'zh-CN', displayName: '女高音(快)' },
+                        { name: 'Microsoft Yating - Chinese (Traditional, Taiwan)', lang: 'zh-TW', displayName: '女中音(快)' }
+                    ];
+        
+                    config.$voiceSelect.empty(); // 清空現有的語音選項
+        
+                    selectedVoices.forEach(function(selectedVoice, i) {
+                        var voice = voices.find(voice => voice.name === selectedVoice.name && voice.lang === selectedVoice.lang);
+                        if (voice) {
+                            var option = $('<option>').val(i).text(selectedVoice.displayName).data('voice', voice);
+                            config.$voiceSelect.append(option);
+                        }
+                    });
+                },
+                initEvents = function() {
+                    var $slides = config.$bookBlock.children();
+        
+                    // 处理播放/暂停按钮事件
+                    config.$navPlayPause.on('click', function() {
+                        if (config.isPlaying && !config.isPaused) {
+                            window.speechSynthesis.pause();
+                            config.isPaused = true;
+                            config.$navPlayPause.find('i').removeClass('fas fa-pause').addClass('fas fa-play');
+                        } else if (config.isPlaying && config.isPaused) {
+                            window.speechSynthesis.resume();
+                            config.isPaused = false;
+                            config.$navPlayPause.find('i').removeClass('fas fa-play').addClass('fas fa-pause');
+                        } else {
+                            playSpeech();
+                        }
+                        return false;
+                    });
+        
+                    // 当语音选项更改时停止当前播放的语音
+                    config.$voiceSelect.on('change', function() {
+                        stopSpeech();
+                        playSpeech();
+                    });
+        
+                    // 翻页时停止语音播放
+                    var stopSpeech = function() {
+                        if (config.isPlaying || config.isPaused) {
+                            window.speechSynthesis.cancel();
+                            config.isPlaying = false;
+                            config.isPaused = false;
+                            config.$navPlayPause.find('i').removeClass('fas fa-pause').addClass('fas fa-play');
+                        }
+                    };
+        
+                    // 开始播放语音
+                    var playSpeech = function() {
+                        var currentPageText = config.$bookBlock.find('.bb-item:visible .text-overlay p').text();
+                        if (currentPageText) {
+                            config.utterance = new SpeechSynthesisUtterance(currentPageText);
+                            config.utterance.rate = 1; // 設置語速
+                            var selectedVoice = config.$voiceSelect.find(':selected').data('voice');
+                            config.utterance.voice = selectedVoice;
+                            window.speechSynthesis.speak(config.utterance);
+                            config.isPlaying = true;
+                            config.isPaused = false;
+                            config.$navPlayPause.find('i').removeClass('fas fa-play').addClass('fas fa-pause');
+        
+                            config.utterance.onend = function() {
+                                config.isPlaying = false;
+                                config.$navPlayPause.find('i').removeClass('fas fa-pause').addClass('fas fa-play');
+                            };
+                            // 添加错误处理
+                            config.utterance.onerror = function(event) {
+                                console.error('SpeechSynthesisUtterance.onerror', event);
+                                config.isPlaying = false;
+                                config.isPaused = false;
+                                config.$navPlayPause.find('i').removeClass('fas fa-pause').addClass('fas fa-play');
+                            };
+                        }
+                    };
+        
+                    // 添加导航事件
+                    config.$navNext.on('click touchstart', function() {
+                        stopSpeech();
+                        config.$bookBlock.bookblock('next');
+                        return false;
+                    });
+        
+                    config.$navPrev.on('click touchstart', function() {
+                        stopSpeech();
+                        config.$bookBlock.bookblock('prev');
+                        return false;
+                    });
+        
+                    config.$navFirst.on('click touchstart', function() {
+                        stopSpeech();
+                        config.$bookBlock.bookblock('first');
+                        return false;
+                    });
+        
+                    config.$navLast.on('click touchstart', function() {
+                        stopSpeech();
+                        config.$bookBlock.bookblock('last');
+                        return false;
+                    });
+        
+                    // 添加滑动事件
+                    $slides.on({
+                        'swipeleft': function(event) {
+                            stopSpeech();
+                            config.$bookBlock.bookblock('next');
+                            return false;
+                        },
+                        'swiperight': function(event) {
+                            stopSpeech();
+                            config.$bookBlock.bookblock('prev');
+                            return false;
+                        }
+                    });
+        
+                    // 添加键盘事件
+                    $(document).keydown(function(e) {
+                        var keyCode = e.keyCode || e.which,
+                            arrow = {
+                                left: 37,
+                                up: 38,
+                                right: 39,
+                                down: 40
+                            };
+        
+                        switch (keyCode) {
+                            case arrow.left:
+                                stopSpeech();
+                                config.$bookBlock.bookblock('prev');
+                                break;
+                            case arrow.right:
+                                stopSpeech();
+                                config.$bookBlock.bookblock('next');
+                                break;
+                        }
+                    });
+                };
+        
+                return { init: init };
+            })();
+        
+            $(document).ready(function() {
+                Page.init();
+            });
+        </script>
+
+    </body>
+</html>
