@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="zxx">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Title -->
+    <title>趣書園</title>
+    <!-- Google Fonts -->
+    <link href="/static/css/css2-Cabinwght400500600700_swap.css" rel="stylesheet">
+    <!-- Favicon -->
+    <!-- Bootstrap Min CSS -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <!-- Animate Min CSS -->
+    <link rel="stylesheet" href="/static/css/animate.min.css">
+    <!-- FlatIcon CSS -->
+    <link rel="stylesheet" href="/static/css/flaticon.css">
+    <!-- Bootstrap Icon CSS -->
+    <link rel="stylesheet" href="/static/css/bootstrap-icons.css">
+    <!-- Font Awesome Min CSS -->
+    <link rel="stylesheet" href="/static/css/fontawesome.min.css">
+    <!-- Mean Menu CSS -->
+    <link rel="stylesheet" href="/static/css/meanmenu.css">
+    <!-- Magnific Popup Min CSS -->
+    <link rel="stylesheet" href="/static/css/magnific-popup.min.css">
+    <!-- Swiper Min CSS -->
+    <link rel="stylesheet" href="/static/css/swiper.min.css">
+    <!-- Owl Carousel Min CSS -->
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="/static/css/responsive.css">
+    <!-- 網頁icon -->
+    <link rel="icon" href="/static/picture/定稿-黑白.png" type="image/png">
+</head>
+
+<body>
+    <!-- Start Preloader Section -->
+    <div class="preloader">
+        <div class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </div>
+    <!-- End Preloader Section -->
+
+    <!-- Start Navbar Section -->
+    <div class="navbar-area">
+        <div class="rainbow-responsive-nav">
+            <div class="container">
+                <div class="rainbow-responsive-menu">
+                    <div class="logo">
+                        <a href="/afterlogin_home">
+                            <img src="/static/picture/logo.png" class="white-logo" alt="logo">
+                            <img src="/static/picture/logo-black.png" class="black-logo" alt="logo">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rainbow-nav">
+            <div class="container">
+                <nav class="navbar navbar-expand-md navbar-light">
+                    <a class="navbar-brand" href="/afterlogin_home">
+                        <img src="/static/picture/logo.png" class="white-logo" alt="logo">
+                        <img src="/static/picture/logo-black.png" class="black-logo" alt="logo">
+                    </a>
+                    <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a href="/afterlogin_home" class="nav-link">故事集</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/myStory" class="nav-link">歷史創作</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/collection" class="nav-link">故事收藏</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/follow" class="nav-link">創作者追蹤</a>
+                            </li>
+                        </ul>
+                        <div class="other-option">
+                            <a class="default-btn" href="/creation_story">開始創作<span></span></a>
+                        </div>
+
+                        <!-- 使用者資料設定 -->
+                        <div class="profile-icon">
+                            <span class="username">{{username}}</span>
+                            <a href="/user_profile">
+                                <i class="fa-solid fa-user fa-xl" style="color: #ffffff;"></i>
+                            </a>
+                        </div>
+                        <!-- 使用者資料設定 -->
+
+                        <!-- 登出 -->
+                        <div class="profile-icon">
+                            <a href="#" id="logout-button">
+                                <i class="fa-solid fa-power-off fa-xl" style="color: #ffffff;"></i>
+                            </a>
+                        </div>
+                        <!-- 登出 -->
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- End Navbar Section -->
+
+    <!-- Start Page Title Section -->
+    <div class="page-title-area">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="container">
+                    <div class="page-title-content">
+                        <h2>故事集</h2>
+                        <br><br>
+
+                        <!-- 搜尋欄 -->
+                        <form class="newsletter-form">
+                            <input type="email" class="input-newsletter" placeholder="搜尋他人的故事" name="EMAIL" required="" autocomplete="off">
+                        </form><br>
+                        <!-- 搜尋欄 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Title Section -->
+
+    <!-- Start Programs Section -->
+    <section class="programs-area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title">
+                        <h6 class="sub-title">✦ Appreciate creation ✦</h6>
+                        <h2>欣賞其他人的創作</h2>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-class-box">
+                        <div class="class-img">
+                            <a href="/story_details">
+                                <img src="/static/picture/class-1.jpg" alt="class img">
+                            </a>
+                        </div>
+                        <div class="class-content">
+                            <h3><a href="/story_details">愛說謊的小猴子</a></h3>
+                            <p>從前，在一片熱帶雨林中，有一群活潑好動的小猴子。其中有一隻叫做奇奇的小猴子...</p>
+                            <div class="class-profile">
+                                <div class="profile-info">
+                                    <div class="avator">
+                                        <img src="/static/picture/author-1.jpg" alt="author img">
+                                    </div>
+                                    <div class="author-name">
+                                        <h4>作者名</h4>
+                                        <span>ID</span>
+                                    </div>
+                                </div>
+                                <button class="class-fee follow-btn" id="follow-button">追  蹤</button>
+                            </div>
+                            <ul class="class-info">
+                                <li>
+                                    <p>故事風格:</p>
+                                    <span>動物、寓教</span>
+                                </li>
+                                <li>
+                                    <p>收藏數:</p>
+                                    <span class="class-fee">50</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-class-box">
+                        <div class="class-img">
+                            <a href="/story_details">
+                                <img src="/static/picture/class-2.jpg" alt="class img">
+                            </a>
+                        </div>
+                        <div class="class-content">
+                            <h3><a href="/story_details">螞蟻與蟋蟀的故事</a></h3>
+                            <p>在森林裡住著一隻勤奮的螞蟻和一隻懶惰的蟋蟀。螞蟻每天都在努力收集食物...</p>
+                            <div class="class-profile">
+                                <div class="profile-info">
+                                    <div class="avator">
+                                        <img src="/static/picture/author-2.jpg" alt="author img">
+                                    </div>
+                                    <div class="author-name">
+                                        <h4>作者名</h4>
+                                        <span>ID</span>
+                                    </div>
+                                </div>
+                                <button class="class-fee follow-btn" id="follow-button">追  蹤</button>
+                            </div>
+                            <ul class="class-info">
+                                <li>
+                                    <p>故事風格:</p>
+                                    <span>動物、寓教</span>
+                                </li>
+                                <li>
+                                    <p>收藏數:</p>
+                                    <span class="class-fee">50</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-class-box">
+                        <div class="class-img">
+                            <a href="/story_details">
+                                <img src="/static/picture/class-3.jpg" alt="class img">
+                            </a>
+                        </div>
+                        <div class="class-content">
+                            <h3><a href="/story_details">狐假虎威</a></h3>
+                            <p>在一片廣闊的森林中，有一隻聰明狡猾的狐狸和一隻威武強大的老虎。狐狸總是以智慧著稱，而老虎則以力量見長...</p>
+                            <div class="class-profile">
+                                <div class="profile-info">
+                                    <div class="avator">
+                                        <img src="/static/picture/author-1.jpg" alt="author img">
+                                    </div>
+                                    <div class="author-name">
+                                        <h4>作者名</h4>
+                                        <span>ID</span>
+                                    </div>
+                                </div>
+                                <button class="class-fee follow-btn" id="follow-button">追  蹤</button>
+                            </div>
+                            <ul class="class-info">
+                                <li>
+                                    <p>故事風格:</p>
+                                    <span>動物、寓教</span>
+                                </li>
+                                <li>
+                                    <p>收藏數:</p>
+                                    <span class="class-fee">50</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-class-box">
+                        <div class="class-img">
+                            <a href="/story_details">
+                                <img src="/static/picture/class-4.jpg" alt="class img">
+                            </a>
+                        </div>
+                        <div class="class-content">
+                            <h3><a href="/story_details">小王子</a></h3>
+                            <p>小王子來自一顆小星球，他在宇宙中旅行，遇見了各種奇特的人和事物，最終回到玫瑰身邊，明白了愛與責任的重要性，並深刻體會到友情的珍貴...</p>
+                            <div class="class-profile">
+                                <div class="profile-info">
+                                    <div class="avator">
+                                        <img src="/static/picture/author-1.jpg" alt="author img">
+                                    </div>
+                                    <div class="author-name">
+                                        <h4>作者名</h4>
+                                        <span>ID</span>
+                                    </div>
+                                </div>
+                                <button class="class-fee follow-btn" id="follow-button">追  蹤</button>
+                            </div>
+                            <ul class="class-info">
+                                <li>
+                                    <p>故事風格:</p>
+                                    <span>動物、寓教</span>
+                                </li>
+                                <li>
+                                    <p>收藏數:</p>
+                                    <span class="class-fee">50</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-class-box">
+                        <div class="class-img">
+                            <a href="/story_details">
+                                <img src="/static/picture/class-5.jpg" alt="class img">
+                            </a>
+                        </div>
+                        <div class="class-content">
+                            <h3><a href="/story_details">外星奇遇</a></h3>
+                            <p>一個外星人降落地球，遇到一個小朋友。小朋友教他地球的遊戲和習俗，他們成為好朋友，外星人回家後，帶著地球的友誼和快樂...</p>
+                            <div class="class-profile">
+                                <div class="profile-info">
+                                    <div class="avator">
+                                        <img src="/static/picture/author-2.jpg" alt="author img">
+                                    </div>
+                                    <div class="author-name">
+                                        <h4>作者名</h4>
+                                        <span>ID</span>
+                                    </div>
+                                </div>
+                                <button class="class-fee follow-btn" id="follow-button">追  蹤</button>
+                            </div>
+                            <ul class="class-info">
+                                <li>
+                                    <p>故事風格:</p>
+                                    <span>動物、寓教</span>
+                                </li>
+                                <li>
+                                    <p>收藏數:</p>
+                                    <span class="class-fee">50</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-class-box">
+                        <div class="class-img">
+                            <a href="/story_details">
+                                <img src="/static/picture/class-6.jpg" alt="class img">
+                            </a>
+                        </div>
+                        <div class="class-content">
+                            <h3><a href="/story_details">友誼</a></h3>
+                            <p>兩個不同的女孩在學校相遇，克服文化差異，成為最好的朋友。她們互相學習對方的語言和傳統，共同創造了無數美好的回憶...</p>
+                            <div class="class-profile">
+                                <div class="profile-info">
+                                    <div class="avator">
+                                        <img src="/static/picture/author-1.jpg" alt="author img">
+                                    </div>
+                                    <div class="author-name">
+                                        <h4>作者名</h4>
+                                        <span>ID</span>
+                                    </div>
+                                </div>
+                                <button class="class-fee follow-btn" id="follow-button">追  蹤</button>
+                            </div>
+                            <ul class="class-info">
+                                <li>
+                                    <p>故事風格:</p>
+                                    <span>動物、寓教</span>
+                                </li>
+                                <li>
+                                    <p>收藏數:</p>
+                                    <span class="class-fee">50</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="pagination-area">
+                        <a href="#" class="prev page-numbers"><i class="fas fa-angle-left"></i></a>
+                        <span class="page-numbers current" aria-current="page">1</span>
+                        <a href="#" class="page-numbers">2</a>
+                        <a href="#" class="page-numbers">3</a>
+                        <a href="#" class="page-numbers">4</a>
+                        <a href="#" class="next page-numbers"><i class="fas fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Classes Section -->
+    </section>
+    <!-- End Programs Section -->
+
+    <!-- Start Footer & Subscribe Section -->
+    <section class="footer-subscribe-wrapper">
+
+        <!-- Start Footer Section -->
+        <div class="footer-area ptb-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-footer-widget">
+                            <a class="footer-logo" href="#">
+                                <img src="/static/picture/logo-black.png" class="black-logo" alt="logo">
+                            </a>
+                            <p>生成精彩的情節和對話，讓您的孩子在享受閱讀樂趣的同時，培養他們的創意思維和語言能力。<br>家長還可以與孩子共同參與創作，增進親子間的互動和交流。</p>
+                            <ul class="footer-social">
+                                <li>
+                                    <a href="#"> <i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"> <i class="fab fa-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"> <i class="fab fa-youtube"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"> <i class="fab fa-linkedin"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="single-footer-widget">
+                            <div class="footer-heading">
+                                <h3>製作團隊-113202</h3>
+                            </div>
+                            <ul class="footer-quick-links">
+                                <li><a href="about.html">陳　平</a></li>
+                                <li><a href="classes.html">張　彤</a></li>
+                                <li><a href="contact.html">林嘉珮</a></li>
+                                <li><a href="privacy-policy.html">李佳佑</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-footer-widget">
+                            <div class="footer-heading">
+                                <h3>聯絡資訊</h3>
+                            </div>
+                            <div class="footer-info-contact"> <i class="flaticon-phone-call"></i>
+                                <h3>電話</h3>
+                                <span><a href="tel:0802235678">080 707 555-321</a></span>
+                            </div>
+                            <div class="footer-info-contact"> <i class="flaticon-envelope"></i>
+                                <h3>Email</h3>
+                                <span><a href="mailto:113202y113@gmail.com">113202y113@gmail.com</a></span>
+                            </div>
+                            <div class="footer-info-contact"> <i class="flaticon-placeholder"></i>
+                                <h3>地址</h3>
+                                <span>台北商業大學-資訊管理系</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Footer Section -->
+    </section>
+    <!-- End Footer & Subscribe Section -->
+
+    <!-- Start Copy Right Section -->
+    <div class="copyright-area">
+        <div class="container">
+            <div class="row align-items-center">
+            </div>
+        </div>
+    </div>
+    <!-- End Copy Right Section -->
+
+    <!-- Start Go Top Section -->
+    <div class="go-top">
+        <i class="fas fa-chevron-up"></i>
+        <i class="fas fa-chevron-up"></i>
+    </div>
+    <!-- End Go Top Section -->
+
+    <!-- jQuery Min JS -->
+    <script src="/static/js/jquery.min.js"></script>
+    <!-- Popper Min JS -->
+    <script src="/static/js/popper.min.js"></script>
+    <!-- Bootstrap Min JS -->
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <!-- Mean Menu JS -->
+    <script src="/static/js/jquery.meanmenu.js"></script>
+    <!-- Appear Min JS -->
+    <script src="/static/js/jquery.appear.min.js"></script>
+    <!-- CounterUp Min JS -->
+    <script src="/static/js/jquery.waypoints.min.js"></script>
+    <script src="/static/js/jquery.counterup.min.js"></script>
+    <!-- Owl Carousel Min JS -->
+    <script src="/static/js/owl.carousel.min.js"></script>
+    <!-- Magnific Popup Min JS -->
+    <script src="/static/js/jquery.magnific-popup.min.js"></script>
+    <!-- Swiper Min JS -->
+    <script src="/static/js/swiper.min.js"></script>
+    <!-- WOW Min JS -->
+    <script src="/static/js/wow.min.js"></script>
+    <!-- Main JS -->
+    <script src="/static/js/main.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const logoutButton = document.querySelector("#logout-button");
+    
+            logoutButton.addEventListener("click", function(e) {
+                e.preventDefault(); // 阻止默認的連結點擊行為
+                const confirmed = confirm("你確定要登出嗎？");
+                if (confirmed) {
+                    window.location.href = "/logout"; // 修改這個URL為你的登出處理路徑
+                }
+            });
+    
+            // 追蹤按鈕點擊事件
+            const followButtons = document.querySelectorAll(".follow-btn");
+    
+            followButtons.forEach(button => {
+                button.addEventListener("click", function() {
+                    if (button.classList.contains("following-btn")) {
+                        // 如果已經是已追蹤狀態，點擊後可以取消追蹤
+                        button.classList.remove("following-btn");
+                        button.textContent = "追蹤";
+                    } else {
+                        // 點擊後變成已追蹤狀態
+                        button.classList.add("following-btn");
+                        button.textContent = "已追蹤";
+                    }
+                });
+            });
+        });
+    </script>
+    
+
+</body>
+
+</html>
