@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js demo-4">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>趣書園</title>
+    <meta name="description" content="Bookblock: A Content Flip Plugin - Demo 4" />
+    <meta name="keywords" content="javascript, jquery, plugin, css3, flip, page, 3d, booklet, book, perspective" />
+    <meta name="author" content="Codrops" />
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/static/css/default.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/bookblock.css" />
+    <!-- custom demo style -->
+    <link rel="stylesheet" type="text/css" href="/static/css/demo2.css" />
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="/static/js/modernizr.custom.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="bb-custom-wrapper">
+        <div id="bb-bookblock" class="bb-bookblock">
+            {% for story in story_list %}
+            <div class="bb-item">
+                <div class="bb-custom-firstpage">
+                    <img src="/static/image/story_cover/{{ story.cover }}" alt="image01"/>
+                    <div class="text-overlay">
+                        <h1>{{ story.title }}</h1>
+                    </div>
+                </div>
+            </div>
+                {% for content, picture in story.pages %}
+                    <div class="bb-item">
+                        <div class="bb-custom-side">
+                            <img src="/static/image/page/{{ picture }}" alt="Page Image"/>
+                            <div class="text-overlay">
+                                <p>{{ content }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            <div class="bb-item">
+                <div class="bb-custom-side">
+                    <img src="/static/image/demo1/11.webp" alt="image01"/>
+                    <div class="text-overlay">
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <nav>
+            <a id="bb-nav-back" href="#" class="bb-custom-icon bb-custom-icon-back"><i class="fas fa-sign-out-alt"></i></a>
+            <a id="bb-nav-first" href="#" class="bb-custom-icon bb-custom-icon-first"><i class="fas fa-angle-double-left"></i></a>
+            <a id="bb-nav-prev" href="#" class="bb-custom-icon bb-custom-icon-arrow-left"><i class="fas fa-angle-left"></i></a>
+            <a id="bb-nav-next" href="#" class="bb-custom-icon bb-custom-icon-arrow-right"><i class="fas fa-angle-right"></i></a>
+            <a id="bb-nav-last" href="#" class="bb-custom-icon bb-custom-icon-last"><i class="fas fa-angle-double-right"></i></a>
+            <a id="bb-nav-playpause" href="#" class="bb-custom-icon bb-custom-icon-playpause"><i class="fas fa-play"></i></a>
+        </nav>
+
+    </div>
+</div><!-- /container -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="/static/js/jquerypp.custom.js"></script>
+<script src="/static/js/jquery.bookblock.js"></script>
+<script>
+    var Page = (function () {
+    var config = {
+            $bookBlock: $('#bb-bookblock'),
+            $navNext: $('#bb-nav-next'),
+            $navPrev: $('#bb-nav-prev'),
+            $navFirst: $('#bb-nav-first'),
+            $navLast: $('#bb-nav-last'),
+            $navPlayPause: $('#bb-nav-playpause'),  // 播放/暂停按钮
+            $navBack: $('#bb-nav-back'),  // 返回按钮
+            $voiceSelect: $('#voiceSelect'), // 语音选择下拉菜单
+            audio: new Audio(), // 用于播放音频
+            isPlaying: false, // 用于跟踪是否正在播放语音
+            isPaused: false,  // 用于跟踪是否暂停
+            currentPageText: "" // 当前页文本
+        },
+        init = function () {
+            config.$bookBlock.bookblock({
+                speed: 1000,
+                shadowSides: 0.8,
+                shadowFlip: 0.4
+            });
+            fetchVoices();
+            initEvents();
+        },
+        fetchVoices = function () {
+            // 设置 Google Cloud Text-to-Speech 的可用语音选项
+            var googleVoices = [
+                { id: 'cmn-TW-Wavenet-A', name: '女聲', lang: 'cmn-TW' },
+                { id: 'cmn-TW-Wavenet-B', name: '男聲', lang: 'cmn-TW' },
+            ];
+            config.$voiceSelect.empty(); // 清空现有的语音选项
+            googleVoices.forEach(function (voice) {
+                var option = $('<option>').val(voice.id).text(voice.name).data('voiceId', voice.id);
+                config.$voiceSelect.append(option);
+            });
+        },
+        initEvents = function () {
+            var $slides = config.$bookBlock.children();
+
+            // 处理播放/暂停按钮事件
+            config.$navPlayPause.on('click', function () {
+                if (config.isPlaying && !config.isPaused) {
+                    config.audio.pause();
+                    config.isPaused = true;
+                    config.$navPlayPause.find('i').removeClass('fas fa-pause').addClass('fas fa-play');
+                } else if (config.isPlaying && config.isPaused) {
+                    config.audio.play();
+                    config.isPaused = false;
+                    config.$navPlayPause.find('i').removeClass('fas fa-play').addClass('fas fa-pause');
+                } else {
+                    playSpeech();
+                }
+                return false;
+            });
+
+            // 当语音选项更改时停止当前播放的语音
+            config.$voiceSelect.on('change', function () {
+                stopSpeech();
+                playSpeech();
+            });
+
+            // 翻页时停止语音播放
+            var stopSpeech = function () {
+                if (config.isPlaying || config.isPaused) {
+                    config.audio.pause();
+                    config.isPlaying = false;
+                    config.isPaused = false;
+                    config.$navPlayPause.find('i').removeClass('fas fa-pause').addClass('fas fa-play');
+                }
+            };
+
+            // 开始播放语音
+            var playSpeech = function () {
+                config.currentPageText = config.$bookBlock.find('.bb-item:visible .text-overlay p').text();
+                console.log('Current page text:', config.currentPageText);
+                if (config.currentPageText) {
+                    var selectedVoiceId = config.$voiceSelect.find(':selected').data('voiceId');
+                    console.log('Selected voice ID:', selectedVoiceId);
+                    fetch('http://localhost:3000/synthesize', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ text: config.currentPageText, voice: selectedVoiceId })
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok ' + response.statusText);
+                        }
+                        console.log('Response received:', response);
+                        return response.blob();
+                    })
+                    .then(blob => {
+                        var audioUrl = URL.createObjectURL(blob);
+                        console.log('Audio URL:', audioUrl);
+                        config.audio.src = audioUrl;
+                        config.audio.play().then(() => {
+                            config.isPlaying = true;
+                            config.isPaused = false;
+                            config.$navPlayPause.find('i').removeClass('fas fa-play').addClass('fas fa-pause');
+                        }).catch(error => {
+                            console.error('Error playing audio:', error);
+                        });
+                        config.audio.onended = function () {
+                            config.isPlaying = false;
+                            config.$navPlayPause.find('i').removeClass('fas fa-pause').addClass('fas fa-play');
+                        };
+                        config.audio.onerror = function () {
+                            console.error('Audio playback error');
+                            config.isPlaying = false;
+                            config.isPaused = false;
+                            config.$navPlayPause.find('i').removeClass('fas fa-pause').addClass('fas fa-play');
+                        };
+                    })
+                    .catch(error => {
+                        console.error('Error fetching audio:', error);
+                    });
+                }
+            };
+
+            // 添加导航事件
+            config.$navNext.on('click touchstart', function () {
+                stopSpeech();
+                config.$bookBlock.bookblock('next');
+                return false;
+            });
+
+            config.$navPrev.on('click touchstart', function () {
+                stopSpeech();
+                config.$bookBlock.bookblock('prev');
+                return false;
+            });
+
+            config.$navFirst.on('click touchstart', function () {
+                stopSpeech();
+                config.$bookBlock.bookblock('first');
+                return false;
+            });
+
+            config.$navLast.on('click touchstart', function () {
+                stopSpeech();
+                config.$bookBlock.bookblock('last');
+                return false;
+            });
+
+            // 添加滑动事件
+            $slides.on({
+                'swipeleft': function (event) {
+                    stopSpeech();
+                    config.$bookBlock.bookblock('next');
+                    return false;
+                },
+                'swiperight': function (event) {
+                    stopSpeech();
+                    config.$bookBlock.bookblock('prev');
+                    return false;
+                }
+            });
+
+            // 添加键盘事件
+            $(document).keydown(function (e) {
+                var keyCode = e.keyCode || e.which,
+                    arrow = {
+                        left: 37,
+                        up: 38,
+                        right: 39,
+                        down: 40
+                    };
+
+                switch (keyCode) {
+                    case arrow.left:
+                        stopSpeech();
+                        config.$bookBlock.bookblock('prev');
+                        break;
+                    case arrow.right:
+                        stopSpeech();
+                        config.$bookBlock.bookblock('next');
+                        break;
+                }
+            });
+
+            // 返回按钮事件
+            config.$navBack.on('click touchstart', function () {
+                window.history.back();
+                return false;
+            });
+        };
+
+    return {init: init};
+})();
+
+$(document).ready(function () {
+    Page.init();
+});
+
+
+</script>
+
+</body>
+</html>

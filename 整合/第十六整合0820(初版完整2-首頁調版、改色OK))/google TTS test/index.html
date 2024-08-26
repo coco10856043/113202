@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-to-Speech Demo</title>
+</head>
+<body>
+    <h1>Text-to-Speech Demo</h1>
+    <textarea id="text-input" rows="4" cols="50">Enter the text you want to synthesize here...</textarea><br>
+    <select id="voiceSelect">
+        <!-- 這裡的選項會通過 JavaScript 動態填充 -->
+    </select><br><br>
+    <button id="playButton">播放</button>
+    <button id="pauseButton">暫停</button>
+    <button id="resumeButton">繼續</button>
+    
+    <script>
+        // 設置 Google Cloud Text-to-Speech 可用語音選項
+        const voices = [
+            { id: 'cmn-TW-Wavenet-A', name: '女聲 (慢)' },
+            { id: 'cmn-TW-Wavenet-B', name: '女高音 (快)' },
+            { id: 'cmn-TW-Wavenet-C', name: '女中音 (快)' }
+        ];
+
+        const voiceSelect = document.getElementById('voiceSelect');
+        voices.forEach(voice => {
+            const option = document.createElement('option');
+            option.value = voice.id;
+            option.textContent = voice.name;
+            voiceSelect.appendChild(option);
+        });
+
+        let audio = new Audio();
+        let isPlaying = false;
+
+        document.getElementById('playButton').addEventListener('click', () => {
+            const text = document.getElementById('text-input').value;
+            const selectedVoice = document.getElementById('voiceSelect').value;
+            
+            fetch('http://localhost:3000/synthesize', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ text: text, voice: selectedVoice })
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                audio.src = URL.createObjectURL(blob);
+                audio.play();
+                isPlaying = true;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        document.getElementById('pauseButton').addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+                isPlaying = false;
+            }
+        });
+
+        document.getElementById('resumeButton').addEventListener('click', () => {
+            if (!isPlaying) {
+                audio.play();
+                isPlaying = true;
+            }
+        });
+    </script>
+</body>
+</html>
