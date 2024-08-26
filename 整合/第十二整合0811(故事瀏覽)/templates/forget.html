@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="zxx">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Title -->
+    <title>趣書園</title>
+    <!-- Google Fonts -->
+    <link href="/static/css/css2-Cabinwght400500600700_swap.css" rel="stylesheet">
+    <!-- Favicon -->
+    <!-- Bootstrap Min CSS -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <!-- Animate Min CSS -->
+    <link rel="stylesheet" href="/static/css/animate.min.css">
+    <!-- FlatIcon CSS -->
+    <link rel="stylesheet" href="/static/css/flaticon.css">
+    <!-- Bootstrap Icon CSS -->
+    <link rel="stylesheet" href="/static/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css">
+    <!-- Font Awesome Min CSS -->
+    <link rel="stylesheet" href="/static/css/fontawesome.min.css">
+    <!-- Mean Menu CSS -->
+    <link rel="stylesheet" href="/static/css/meanmenu.css">
+    <!-- Magnific Popup Min CSS -->
+    <link rel="stylesheet" href="/static/css/magnific-popup.min.css">
+    <!-- Swiper Min CSS -->
+    <link rel="stylesheet" href="/static/css/swiper.min.css">
+    <!-- Owl Carousel Min CSS -->
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="/static/css/responsive.css">
+    <!-- 網頁icon -->
+    <link rel="icon" href="/static/picture/定稿-黑白.png" type="image/png">
+
+</head>
+
+<body>
+    <!-- Start Preloader Section -->
+    <div class="preloader">
+        <div class="spinner">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </div>
+    <!-- End Preloader Section -->
+
+    <!-- Start Navbar Section -->
+    <div class="navbar-area">
+        <div class="rainbow-responsive-nav">
+            <div class="container">
+                <div class="rainbow-responsive-menu">
+                    <div class="logo">
+                        <a href="/">
+                            <img src="/static/picture/logo.png" class="white-logo" alt="logo">
+                            <img src="/static/picture/logo-black.png" class="black-logo" alt="logo">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rainbow-nav">
+            <div class="container">
+                <nav class="navbar navbar-expand-md navbar-light">
+                    <a class="navbar-brand" href="/">
+                        <img src="/static/picture/logo.png" class="white-logo" alt="logo">
+                        <img src="/static/picture/logo-black.png" class="black-logo" alt="logo">
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- End Navbar Section -->
+
+    <!-- Start Page Title Section -->
+    <div class="page-title-area">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="container">
+                    <div class="page-title-content">
+                        <h2>登　入</h2>
+                        <ul>
+                            <li><a href="/">回首頁</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Title Section -->
+
+    <!-- Start Contact Section -->
+    <div class="contact-section section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title">
+                        <h6 class="sub-title">✦ FORGOT THE PASSWORD ✦</h6>
+                        <h2>忘記密碼</h2>
+                    </div>
+                </div>
+                {% if success_message %}
+                <div class="alert alert-success" role="alert">
+                    {{ success_message }}
+                </div>
+                {% endif %}
+
+                {% if error_message %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error_message }}
+                </div>
+                {% endif %}
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="contact-form">
+                        <p class="form-message"></p>
+                        <form action="/change" method="post">
+                            <div class="row">
+                                <div style="text-align: center;">
+                                    <div class="col-lg-6 col-md-6" style="display: inline-block; text-align: left;">
+                                                                              
+                                        <h4>資料驗證</h4>
+                                        <!-- <div class="form-group">
+                                            <input type="text" name="title" id="title" class="form-control" required="" placeholder="帳號(須包含@，且長度超過10個字)" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" value="{{title}}">
+                                        </div> -->
+                                        <div class="form-group position-relative">
+                                            <input type="email" name="title" id="title" class="form-control" required=""
+                                                   placeholder="帳號(須包含@，且長度超過10個字)"
+                                                   pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                                                   title="請輸入有效的電子郵件地址"
+                                                   value="{{title}}" data-toggle="popover" data-trigger="focus" data-content="請輸入有效的電子郵件地址，例如: abc123@abc.edu.tw">
+                                            <small id="emailHelp" class="form-text text-muted" style="display: block; margin-top: 5px;"></small>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="name" id="name" class="form-control" placeholder="暱稱" value="{{name}}">
+                                        </div>
+
+                                        <h4>密碼修改</h4>
+                                        <div class="form-group">
+                                            <input type="password" name="password1" id="password1" class="form-control" required="" placeholder="輸入新密碼" value="{{password1}}">
+                                            <button type="button" id="togglePassword" class="btn btn-outline-secondary">
+                                            </button>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" name="password2" id="password2" class="form-control" required="" placeholder="確認修改密碼" value="{{password2}}">
+                                            <button type="button" id="togglePassword" class="btn btn-outline-secondary">
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="contact-btn">
+                                        <button type="submit" class="default-btn submit-btn">確認修改<span></span></button>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    document.getElementById('title').addEventListener('blur', function() {
+                                        const emailInput = document.getElementById('title');
+                                        const emailHelp = document.getElementById('emailHelp');
+                                        const email = emailInput.value;
+                                        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                            
+                                        if (!emailPattern.test(email)) {
+                                            emailHelp.textContent = '請輸入有效的電子郵件地址，例如: abc123@abc.edu.tw';
+                                            emailInput.classList.add('is-invalid');
+                                        } else {
+                                            emailHelp.textContent = '';
+                                            emailInput.classList.remove('is-invalid');
+                                        }
+                                    });
+                                </script>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="custom-shape-1">
+            <img src="/static/picture/shape-1.png" alt="png img">
+        </div>
+        <div class="custom-shape-2">
+            <img src="/static/picture/shape.png" alt="png img">
+        </div>
+    </div>
+    <!-- End Contact Section -->
+
+    <!-- Start Footer Section -->
+    <div class="footer-area ptb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <a class="footer-logo" href="#">
+                            <img src="/static/picture/logo-black.png" class="black-logo" alt="logo">
+                        </a>
+                        <p>生成精彩的情節和對話，讓您的孩子在享受閱讀樂趣的同時，培養他們的創意思維和語言能力。<br>家長還可以與孩子共同參與創作，增進親子間的互動和交流。</p>
+                        <ul class="footer-social">
+                            <li>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                </div>
+
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <div class="footer-heading">
+                            <h3>製作團隊-113202</h3>
+                        </div>
+                        <ul class="footer-quick-links">
+                            <li><a href="about.html">陳　平</a></li>
+                            <li><a href="classes.html">張　彤</a></li>
+                            <li><a href="contact.html">林嘉珮</a></li>
+                            <li><a href="privacy-policy.html">李佳佑</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <div class="footer-heading">
+                            <h3>聯絡資訊</h3>
+                        </div>
+                        <div class="footer-info-contact"><i class="flaticon-phone-call"></i>
+                            <h3>電話</h3>
+                            <span><a href="tel:0802235678">080 707 555-321</a></span>
+                        </div>
+                        <div class="footer-info-contact"><i class="flaticon-envelope"></i>
+                            <h3>Email</h3>
+                            <span><a href="mailto:113202y113@gmail.com">113202y113@gmail.com</a></span>
+                        </div>
+                        <div class="footer-info-contact"><i class="flaticon-placeholder"></i>
+                            <h3>地址</h3>
+                            <span>台北商業大學-資訊管理系</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Footer Section -->
+    </section>
+    <!-- End Footer & Subscribe Section -->
+
+    <!-- Start Copy Right Section -->
+    <div class="copyright-area"></div>
+    <!-- End Copy Right Section -->
+
+    <!-- Start Go Top Section -->
+    <div class="go-top">
+        <i class="fas fa-chevron-up"></i>
+        <i class="fas fa-chevron-up"></i>
+    </div>
+    <!-- End Go Top Section -->
+
+
+    <!-- jQuery Min JS -->
+    <script src="/static/js/jquery.min.js"></script>
+    <!-- Popper Min JS -->
+    <script src="/static/js/popper.min.js"></script>
+    <!-- Bootstrap Min JS -->
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Mean Menu JS -->
+    <script src="/static/js/jquery.meanmenu.js"></script>
+    <!-- Appear Min JS -->
+    <script src="/static/js/jquery.appear.min.js"></script>
+    <!-- CounterUp Min JS -->
+    <script src="/static/js/jquery.waypoints.min.js"></script>
+    <script src="/static/js/jquery.counterup.min.js"></script>
+    <!-- Owl Carousel Min JS -->
+    <script src="/static/js/owl.carousel.min.js"></script>
+    <!-- Magnific Popup Min JS -->
+    <script src="/static/js/jquery.magnific-popup.min.js"></script>
+    <!-- Swiper Min JS -->
+    <script src="/static/js/swiper.min.js"></script>
+    <!-- Gmap3 Min JS -->
+    <script src="/static/js/js.js"></script>
+    <script src="/static/js/gmap3.min.js"></script>
+    <!-- Google Map JS -->
+    <script src="/static/js/map.js"></script>
+    <!-- WOW Min JS -->
+    <script src="/static/js/wow.min.js"></script>
+    <!-- Ajax Mail JS -->
+    <script src="/static/js/ajax.mail.js"></script>
+    <!-- Main JS -->
+    <script src="/static/js/main.js"></script>
+    
+
+</body>
+
+</html>
