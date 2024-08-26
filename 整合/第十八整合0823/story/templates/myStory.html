@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="zxx">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Title -->
+	<title>趣書園</title>
+	<!-- Google Fonts -->
+	<link href="/static/css/css2-Cabinwght400500600700_swap.css" rel="stylesheet">
+	<!-- Favicon -->
+	
+	<!-- Bootstrap Min CSS -->
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+	<!-- Animate Min CSS -->
+	<link rel="stylesheet" href="/static/css/animate.min.css">
+	<!-- FlatIcon CSS -->
+	<link rel="stylesheet" href="/static/css/flaticon.css">
+	<!-- Bootstrap Icon CSS -->
+	<link rel="stylesheet" href="/static/css/bootstrap-icons.css">
+	<!-- Font Awesome Min CSS -->
+	<link rel="stylesheet" href="/static/css/fontawesome.min.css">
+	<!-- Mean Menu CSS -->
+	<link rel="stylesheet" href="/static/css/meanmenu.css">
+	<!-- Magnific Popup Min CSS -->
+	<link rel="stylesheet" href="/static/css/magnific-popup.min.css">
+	<!-- Swiper Min CSS -->
+	<link rel="stylesheet" href="/static/css/swiper.min.css">
+	<!-- Owl Carousel Min CSS -->
+	<link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+	<!-- Style CSS -->
+	<link rel="stylesheet" href="/static/css/style.css">
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" href="/static/css/responsive.css">
+	<!-- 網頁icon -->
+	<link rel="icon" href="/static/picture/定稿-黑白.png" type="image/png">
+</head>
+
+<body>
+    <!-- 訊息視窗 -->
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+          <span class="close-btn">&times;</span>
+          <p>你確定要登出嗎？</p>
+          <div class="modal-actions">
+            <button id="confirmBtn">確定</button>
+            <button id="cancelBtn">取消</button>
+          </div>
+        </div>
+      </div>
+	<!-- Start Preloader Section -->
+	<div class="preloader">
+		<div class="spinner">
+			<div class="double-bounce1"></div>
+			<div class="double-bounce2"></div>
+		</div>
+	</div>	
+	<!-- End Preloader Section -->
+	
+	<!-- Start Navbar Section -->
+	<div class="navbar-area">
+	    <div class="rainbow-responsive-nav">
+	        <div class="container">
+	            <div class="rainbow-responsive-menu">
+	                <div class="logo">
+	                    <a href="/afterlogin_home">
+	                        <img src="/static/picture/logo.png" class="white-logo" alt="logo">
+	                        <img src="/static/picture/logo-black.png" class="black-logo" alt="logo">
+	                    </a>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="rainbow-nav">
+	        <div class="container">
+	            <nav class="navbar navbar-expand-md navbar-light">
+	                <a class="navbar-brand" href="/afterlogin_home">
+	                    <img src="/static/picture/logo.png" class="white-logo" alt="logo">
+	                    <img src="/static/picture/logo-black.png" class="black-logo" alt="logo">
+	                </a>
+	                <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+	                    <ul class="navbar-nav">
+	                        <li class="nav-item">
+	                            <a href="/afterlogin_home" class="nav-link">故事集</a>
+	                        </li>
+							<li class="nav-item">
+	                            <a href="/myStory" class="nav-link">歷史創作</a>
+	                        </li>
+							<li class="nav-item">
+	                            <a href="/collection" class="nav-link">故事收藏</a>
+	                        </li>
+							<li class="nav-item">
+	                            <a href="/follow" class="nav-link">創作者追蹤</a>
+	                        </li>
+	                        <!-- <li class="nav-item">
+	                            <a href="contact.html" class="nav-link">Contact</a>
+	                        </li> -->
+	                    </ul>
+						<div class="other-option">
+	                        <a class="default-btn" href="/creation_story">開始創作<span></span></a>
+	                    </div>
+
+						<!-- 使用者資料設定 -->
+                        <div class="profile-icon">
+                            <span class="username">{{username}}</span>
+                            <a href="/user_profile">
+                                <i class="fa-solid fa-user fa-xl" style="color: #ffffff;"></i>
+                            </a>
+                        </div>
+                        <!-- 使用者資料設定 -->
+
+                        <!-- 登出 -->
+						<div class="profile-icon">
+							<a href="#" id="logout-button">
+								<i class="fa-solid fa-power-off fa-xl" style="color: #ffffff;"></i>
+							</a>
+						</div>
+						<!-- 登出 -->
+	                </div>
+	            </nav>
+	        </div>
+	    </div>
+	</div>
+	<!-- End Navbar Section -->
+	
+	<!-- Start Page Title Section -->
+	<div class="page-title-area">
+		<div class="d-table">
+			<div class="d-table-cell">
+				<div class="container">
+					<div class="page-title-content">
+						<h2>{{ htmltitle }}</h2>
+						<br><br>
+
+						<!-- 搜尋欄 -->
+						<form class="newsletter-form" action="/searchuser" method="GET">
+							<input type="text" class="input-newsletter" placeholder="搜尋他人的故事" name="search_user" required="" autocomplete="off">
+							<button type="submit" style="background-color: transparent">
+								<i class="fa-solid fa-magnifying-glass" style="color: #5c5c5c"></i>
+							</button>							
+						</form><br>
+						<!-- 搜尋欄 -->
+						 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Page Title Section -->
+	
+	<!-- Start Blog Section -->
+	<section class="blog-section section-padding">
+		<div class="container">
+			<div class="row">
+				{% for story in stories %}
+				<div class="col-lg-4 col-md-6">
+					<div class="blog-single-item">
+						<div class="blog-image">
+							<a href="{{ story.link }}">
+								<img src="{{ story.image }}" alt="image">
+							</a>
+						</div>
+						<div class="blog-description">
+							<ul class="blog-list">
+								<li>
+									<a href="#"><i class="bi bi-person-circle"></i> {{ story.user }}</a>
+								</li>
+							</ul>
+							<div class="blog-content">
+								<h3>
+									<a href="{{ story.link }}">
+										{{ story.title }}
+									</a>
+								</h3>
+								<p>{{ story.description }}</p>
+								<div class="blog-btn">
+									<a href="{{ story.link }}" class="read-more"><i class="bi bi-arrow-right-short"></i> Read More</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+				<div class="col-lg-12 col-md-12">
+					<div class="pagination-area">
+						<a href="#" class="prev page-numbers"><i class="fas fa-angle-left"></i></a>
+						<span class="page-numbers current" aria-current="page">1</span>
+						<a href="#" class="page-numbers">2</a>
+						<a href="#" class="page-numbers">3</a>
+						<a href="#" class="page-numbers">4</a>
+						<a href="#" class="next page-numbers"><i class="fas fa-angle-right"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Blog Section -->
+	
+	<!-- Start Footer & Subscribe Section -->
+	<section class="footer-subscribe-wrapper">
+
+		<!-- Start Footer Section -->
+		<div class="footer-area ptb-100">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="single-footer-widget">
+							<a class="footer-logo" href="#">
+								<img src="/static/picture/logo-black.png" class="black-logo" alt="logo">
+							</a>
+							<p>生成精彩的情節和對話，讓您的孩子在享受閱讀樂趣的同時，培養他們的創意思維和語言能力。<br>家長還可以與孩子共同參與創作，增進親子間的互動和交流。</p>
+							<ul class="footer-social">
+								<li>
+									<a href="#"> <i class="fab fa-facebook-f"></i></a>
+								</li>
+								<li>
+									<a href="#"> <i class="fab fa-twitter"></i></a>
+								</li>
+								<li>
+									<a href="#"> <i class="fab fa-youtube"></i></a>
+								</li>
+								<li>
+									<a href="#"> <i class="fab fa-linkedin"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-lg-2 col-md-6 col-sm-6">
+					</div>
+
+					<div class="col-lg-2 col-md-6 col-sm-6">
+						<div class="single-footer-widget">
+							<div class="footer-heading">
+								<h3>製作團隊-113202</h3>
+							</div>
+							<ul class="footer-quick-links">
+								<li><a href="about.html">陳　平</a></li>
+								<li><a href="classes.html">張　彤</a></li>
+								<li><a href="contact.html">林嘉珮</a></li>
+								<li><a href="privacy-policy.html">李佳佑</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-md-6 col-sm-6">
+						<div class="single-footer-widget">
+							<div class="footer-heading">
+								<h3>聯絡資訊</h3>
+							</div>
+							<div class="footer-info-contact"> <i class="flaticon-phone-call"></i>
+								<h3>電話</h3>
+								<span><a href="tel:0802235678">080 707 555-321</a></span>
+							</div>
+							<div class="footer-info-contact"> <i class="flaticon-envelope"></i>
+								<h3>Email</h3>
+								<span><a href="mailto:113202y113@gmail.com">113202y113@gmail.com</a></span>
+							</div>
+							<div class="footer-info-contact"> <i class="flaticon-placeholder"></i>
+								<h3>地址</h3>
+								<span>台北商業大學-資訊管理系</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
+	<!-- End Footer Section -->
+	</section>
+	<!-- End Footer & Subscribe Section -->
+	
+	<!-- Start Copy Right Section -->
+	<div class="copyright-area"></div>
+	<!-- End Copy Right Section -->
+	
+	<!-- Start Go Top Section -->
+	<div class="go-top">
+		<i class="fas fa-chevron-up"></i>
+		<i class="fas fa-chevron-up"></i>
+	</div>
+	<!-- End Go Top Section -->
+	
+	<!-- jQuery Min JS -->
+	<script src="/static/js/jquery.min.js"></script>
+	<!-- Popper Min JS -->
+	<script src="/static/js/popper.min.js"></script>
+	<!-- Bootstrap Min JS -->
+	<script src="/static/js/bootstrap.bundle.min.js"></script>
+	<!-- Mean Menu JS -->
+	<script src="/static/js/jquery.meanmenu.js"></script>
+	<!-- Appear Min JS -->
+	<script src="/static/js/jquery.appear.min.js"></script>
+	<!-- CounterUp Min JS -->
+	<script src="/static/js/jquery.waypoints.min.js"></script>
+	<script src="/static/js/jquery.counterup.min.js"></script>
+	<!-- Owl Carousel Min JS -->
+	<script src="/static/js/owl.carousel.min.js"></script>
+	<!-- Magnific Popup Min JS -->
+	<script src="/static/js/jquery.magnific-popup.min.js"></script>
+	<!-- Swiper Min JS -->
+	<script src="/static/js/swiper.min.js"></script>
+	<!-- WOW Min JS -->
+	<script src="/static/js/wow.min.js"></script>
+	<!-- Main JS -->
+	<script src="/static/js/main.js"></script>
+	
+</body>
+
+</html>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const logoutButton = document.querySelector("#logout-button");
+
+        // 獲取模態框
+		var modal = document.getElementById("customModal");
+
+		// 獲取打開模態框的按鈕（假設你有一個按鈕來觸發模態框）
+		var btn = document.getElementById("logout-button");
+
+		// 獲取關閉按鈕
+		var span = document.getElementsByClassName("close-btn")[0];
+
+		// 當用戶點擊按鈕時打開模態框
+		btn.onclick = function() {
+		modal.style.display = "block";
+		}
+
+		// 當用戶點擊關閉按鈕時關閉模態框
+		span.onclick = function() {
+		modal.style.display = "none";
+		}
+
+		// 當用戶點擊模態框外部時關閉模態框
+		window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+		}
+
+		// 確定和取消按鈕的事件處理
+		document.getElementById("confirmBtn").onclick = function() {
+		// 在這裡處理確定登出的邏輯
+		modal.style.display = "none";
+		window.location.href = "/logout";
+		}
+
+		document.getElementById("cancelBtn").onclick = function() {
+		modal.style.display = "none";
+		}
+    });
+</script>
