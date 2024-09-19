@@ -27,7 +27,7 @@ app = Flask(__name__)
 #-----------------------
 # 設定一個祕鑰
 #-----------------------
-app.config['SECRET_KEY'] = 'assistant_id'
+app.config['SECRET_KEY'] = 'itismysecretkey'
 
 #-----------------------
 # 設定路由
